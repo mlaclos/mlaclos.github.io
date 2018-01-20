@@ -179,6 +179,7 @@ $('form').on('submit', function (event) {
             break;
         case 'flat':
             ogloszenie = new Mieszkanie(powierzchnia, city);
+            $('#houseInputs').hide();
             break;
         case 'land':
             ogloszenie = new Dzialka(powierzchnia, city);
@@ -198,7 +199,16 @@ function Counter() {
     counterPlace.text(counterOgloszen);
 }
 
-listaOgloszen.on('click', 'button', function (event) {});
+listaOgloszen.on('click', 'button', function (event) {
+
+    var array = Array.from(listaOgloszen.children());
+    var currentLi = this.parentElement; // z elem. jQuerowym: $(this).parent() nie działało, bo nie zgadzał sie typeof
+    var index = array.indexOf(currentLi);
+    Properties.splice(index, 1);
+
+    $(currentLi).remove();
+    Counter();
+});
 
 var filtres = $('#filtres').find('button');
 

@@ -71,6 +71,7 @@ $('form').on('submit', function(event) {
             break;
         case 'flat':
             ogloszenie = new Mieszkanie(powierzchnia, city);
+            $('#houseInputs').hide();
             break;
         case 'land':
             ogloszenie = new Dzialka(powierzchnia, city);
@@ -96,7 +97,13 @@ function Counter() {
 
 listaOgloszen.on('click', 'button', function(event) {
 
+    let array = Array.from(listaOgloszen.children());
+    let currentLi = this.parentElement; // z elem. jQuerowym: $(this).parent() nie działało, bo nie zgadzał sie typeof
+    let index = array.indexOf(currentLi);
+    Properties.splice(index, 1);
 
+    $(currentLi).remove();
+    Counter();
 
 });
 
