@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodersLab</title>
+</head>
+<body>
+    <h2>Lista ogłoszeń:</h2>
+    <div id="filters">
+      <button data-type="house">Domy</button>
+      <button data-type="flat">Mieszkania</button>
+      <button data-type="land">Dzziałki</button>
+      <button data-type="all">Wszystkie ogłoszenia</button>
+    </div>
+    <ul class="offers"></ul>
+
+    <p>Ilość ogłoszeń: <span class="offers-no">0</span></p>
+
+    <br />
+    <br />
+    <br />
+
+    <h3>Dodaj nowe ogłoszenie:</h3>
+    <form>
+        <label for="type">Wybierz typ nieruchomości</label>
+        <select name="type" id="type">
+          <option value="house">Dom</option>
+          <option value="flat">Mieszkanie</option>
+          <option value="land">Działka</option>
+        </select>
+
+        <fieldset>
+          <h4>Podaj adres:</h4>
+          <input type="text" id="city" placeholder="Miasto/miejscowość ">
+          <input type="text" id="street" placeholder="Ulica">
+          <input type="text" id="no" placeholder="Numer domu">
+          <input type="text" id="flat_no" placeholder="Numer mieszkania">
+          <input type="text" id="powierzchnia" placeholder="Powierzchnia">
+
+        </fieldset>
+
+        <input type="submit" placeholder="Dodaj" id="add">
+    </form>
+
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <script src="js/out.js"></script>
+</body>
+</html>
