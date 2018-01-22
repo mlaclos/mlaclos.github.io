@@ -27,10 +27,10 @@ class Dom extends Property {
 }
 
 class Mieszkanie extends Property {
-    constructor(powierzchnia, miasto, rokBudowy, czynsz) {
+    constructor(powierzchnia, miasto, rokBudowy, pokoje) {
         super(powierzchnia, miasto);
         // this.rokBudowy = rokBudowy;
-        // this.czynsz = czynsz;
+        this.pokoje = pokoje;
     }
 
 }
@@ -47,6 +47,40 @@ let listaOgloszen = $('.offers');
 let deleteButton = '<button class="deleteButton">Usuń ogłoszenie</button>';
 
 
+let select = $('select');
+
+let houseDiv = $('#houseInputs');
+let flatDiv = $('#flatInputs');
+let landDiv = $('#landInputs');
+
+flatDiv.hide();
+landDiv.hide();
+
+select.on('change', function(event) {
+
+    let typNieruchomosci = select.val();
+
+    switch (typNieruchomosci) {
+        case 'house':
+            houseDiv.show();
+            flatDiv.hide();
+            landDiv.hide();
+            break;
+        case 'flat':
+            houseDiv.hide();
+            flatDiv.show();
+            landDiv.hide();
+            break;
+        case 'land':
+            houseDiv.hide();
+            flatDiv.hide();
+            landDiv.show();
+            break;
+    }
+
+});
+
+
 $('form').on('submit', function(event) {
     event.preventDefault();
 
@@ -60,7 +94,7 @@ $('form').on('submit', function(event) {
 
 
 
-    listaOgloszen.append('<li>' + city + ', ' + street + ' ' + noHouse + '/' + noFlat + ', pow: ' + powierzchnia + ' m2' + deleteButton + ' </li>').ap;
+    listaOgloszen.append('<li>' + city + ', ' + street + ' ' + noHouse + 'm. ' + noFlat + deleteButton + ' </li>').ap;
 
 
     let typNieruchomosci = $('select').val();
@@ -70,8 +104,8 @@ $('form').on('submit', function(event) {
             ogloszenie = new Dom(powierzchnia, city);
             break;
         case 'flat':
-            ogloszenie = new Mieszkanie(powierzchnia, city);
-            $('#houseInputs').hide();
+            ogloszenie = new Mieszkanie(powierzchnia, city, pokoje);
+
             break;
         case 'land':
             ogloszenie = new Dzialka(powierzchnia, city);
@@ -101,9 +135,11 @@ listaOgloszen.on('click', 'button', function(event) {
     let currentLi = this.parentElement; // z elem. jQuerowym: $(this).parent() nie działało, bo nie zgadzał sie typeof
     let index = array.indexOf(currentLi);
     Properties.splice(index, 1);
-
+    console.log(Properties);
+    
     $(currentLi).remove();
     Counter();
+
 
 });
 

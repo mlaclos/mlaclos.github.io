@@ -130,12 +130,14 @@ var Dom = function (_Property) {
 var Mieszkanie = function (_Property2) {
     _inherits(Mieszkanie, _Property2);
 
-    function Mieszkanie(powierzchnia, miasto, rokBudowy, czynsz) {
+    function Mieszkanie(powierzchnia, miasto, rokBudowy, pokoje) {
         _classCallCheck(this, Mieszkanie);
 
-        return _possibleConstructorReturn(this, (Mieszkanie.__proto__ || Object.getPrototypeOf(Mieszkanie)).call(this, powierzchnia, miasto));
         // this.rokBudowy = rokBudowy;
-        // this.czynsz = czynsz;
+        var _this2 = _possibleConstructorReturn(this, (Mieszkanie.__proto__ || Object.getPrototypeOf(Mieszkanie)).call(this, powierzchnia, miasto));
+
+        _this2.pokoje = pokoje;
+        return _this2;
     }
 
     return Mieszkanie;
@@ -158,6 +160,38 @@ var Dzialka = function (_Property3) {
 var listaOgloszen = $('.offers');
 var deleteButton = '<button class="deleteButton">Usuń ogłoszenie</button>';
 
+var select = $('select');
+
+var houseDiv = $('#houseInputs');
+var flatDiv = $('#flatInputs');
+var landDiv = $('#landInputs');
+
+flatDiv.hide();
+landDiv.hide();
+
+select.on('change', function (event) {
+
+    var typNieruchomosci = select.val();
+
+    switch (typNieruchomosci) {
+        case 'house':
+            houseDiv.show();
+            flatDiv.hide();
+            landDiv.hide();
+            break;
+        case 'flat':
+            houseDiv.hide();
+            flatDiv.show();
+            landDiv.hide();
+            break;
+        case 'land':
+            houseDiv.hide();
+            flatDiv.hide();
+            landDiv.show();
+            break;
+    }
+});
+
 $('form').on('submit', function (event) {
     event.preventDefault();
 
@@ -169,7 +203,7 @@ $('form').on('submit', function (event) {
     var powierzchnia = self.find('#powierzchnia').val();
     var ogloszenie = void 0;
 
-    listaOgloszen.append('<li>' + city + ', ' + street + ' ' + noHouse + '/' + noFlat + ', pow: ' + powierzchnia + ' m2' + deleteButton + ' </li>').ap;
+    listaOgloszen.append('<li>' + city + ', ' + street + ' ' + noHouse + 'm. ' + noFlat + deleteButton + ' </li>').ap;
 
     var typNieruchomosci = $('select').val();
 
@@ -178,8 +212,8 @@ $('form').on('submit', function (event) {
             ogloszenie = new Dom(powierzchnia, city);
             break;
         case 'flat':
-            ogloszenie = new Mieszkanie(powierzchnia, city);
-            $('#houseInputs').hide();
+            ogloszenie = new Mieszkanie(powierzchnia, city, pokoje);
+
             break;
         case 'land':
             ogloszenie = new Dzialka(powierzchnia, city);
@@ -205,6 +239,7 @@ listaOgloszen.on('click', 'button', function (event) {
     var currentLi = this.parentElement; // z elem. jQuerowym: $(this).parent() nie działało, bo nie zgadzał sie typeof
     var index = array.indexOf(currentLi);
     Properties.splice(index, 1);
+    console.log(Properties);
 
     $(currentLi).remove();
     Counter();
