@@ -94,7 +94,7 @@ $('form').on('submit', function(event) {
 
 
 
-    listaOgloszen.append('<li>' + city + ', ' + street + ' ' + noHouse + 'm. ' + noFlat + deleteButton + ' </li>').ap;
+
 
 
     let typNieruchomosci = $('select').val();
@@ -102,13 +102,15 @@ $('form').on('submit', function(event) {
     switch (typNieruchomosci) {
         case 'house':
             ogloszenie = new Dom(powierzchnia, city);
+            listaOgloszen.append('<li data-type="house">' + city + ', ' + street + ' ' + noHouse + deleteButton + ' </li>');
             break;
         case 'flat':
             ogloszenie = new Mieszkanie(powierzchnia, city, pokoje);
-
+            listaOgloszen.append('<li data-type="flat">' + city + ', ' + street + ' ' + noHouse + 'm. ' + noFlat + deleteButton + ' </li>');
             break;
         case 'land':
             ogloszenie = new Dzialka(powierzchnia, city);
+            listaOgloszen.append('<li data-type="land">' + city + ', ' + street + ' ' + noHouse + 'm. ' + noFlat + deleteButton + ' </li>');
             break;
 
     }
@@ -136,20 +138,40 @@ listaOgloszen.on('click', 'button', function(event) {
     let index = array.indexOf(currentLi);
     Properties.splice(index, 1);
     console.log(Properties);
-    
+
     $(currentLi).remove();
     Counter();
 
 
 });
 
-let filtres = $('#filtres').find('button');
+let filters = $('#filters').find('button');
 
-filtres.on('click', function() {
+filters.on('click', function(event) {
 
-    //let type = $(this).
+    let type = $(this).data('type');
+    console.log(type);
 
+    switch (type) {
+        case 'house':
+            $('li[data-type="house"]').show();
+            $('li[data-type="flat"]').hide();
+            $('li[data-type="land"]').hide();
+            break;
+        case 'flat':
+            $('li[data-type="house"]').hide();
+            $('li[data-type="flat"]').show();
+            $('li[data-type="land"]').hide();
+            break;
+        case 'land':
+            $('li[data-type="house"]').hide();
+            $('li[data-type="flat"]').hide();
+            $('li[data-type="land"]').show();
+            break;
+        case 'all':
+            $('li').show();
+            break;
+    }
+
+    Counter();
 });
-
-
-//li[data-type="+ "]
