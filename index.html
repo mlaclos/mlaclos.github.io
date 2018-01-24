@@ -1,74 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>CodersLab</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,700&amp;subset=latin-ext" rel="stylesheet">
 </head>
+
 <body>
-    <h2>Lista ogłoszeń:</h2>
-    <div id="filters">
-      <button data-type="house">Domy</button>
-      <button data-type="flat">Mieszkania</button>
-      <button data-type="land">Dzziałki</button>
-      <button data-type="all">Wszystkie ogłoszenia</button>
+    <div class="container">
+        <h2>Lista ogłoszeń:</h2>
+        <div id="filters">
+            <button data-type="house">Domy</button>
+            <button data-type="flat">Mieszkania</button>
+            <button data-type="land">Działki</button>
+            <button data-type="all">Wszystkie ogłoszenia</button>
+        </div>
+        <ul class="offers"></ul>
+
+        <p>Ilość ogłoszeń: <span class="offers-no">0</span></p>
     </div>
-    <ul class="offers"></ul>
-
-    <p>Ilość ogłoszeń: <span class="offers-no">0</span></p>
-
     <br />
     <br />
     <br />
-
-    <h3>Dodaj nowe ogłoszenie:</h3>
-    <form>
-        <label for="type">Wybierz typ nieruchomości</label>
-        <select name="type" id="type">
+    <div id='addnewoffer'>
+        <div class="container">
+            <h3>Dodaj nowe ogłoszenie:</h3>
+            <form>
+                <label for="type">Wybierz typ nieruchomości</label>
+                <select name="type" id="type">
           <option value="house">Dom</option>
           <option value="flat">Mieszkanie</option>
           <option value="land">Działka</option>
         </select>
 
-        <fieldset>
-          <h4>Podaj adres:</h4>
-          <input type="text" id="city" placeholder="Miasto/miejscowość ">
-          <input type="text" id="street" placeholder="Ulica">
-          <input type="text" id="no" placeholder="Numer domu">
-          <input type="text" id="flat_no" placeholder="Numer mieszkania">
+                <fieldset>
+                    <h4>Podaj adres:</h4>
+                    <input type="text" id="city" placeholder="Miasto/miejscowość ">
+                    <input type="text" id="street" placeholder="Ulica">
+                    <input type="text" id="no" placeholder="Numer domu">
+                    <input type="text" id="flat_no" placeholder="Numer mieszkania">
 
 
-        <h4>Podaj dodatkowe informacje:</h4>
+                    <h4>Podaj dodatkowe informacje:</h4>
 
-        <div id="houseInputs">
-        <input type="text" id="powierzchnia" placeholder="Powierzchnia">
-        <input type="text" id="rodzajZabudowy" placeholder="Rodzaj zabudowy">
-        <input type="text" id="rynek" placeholder="Rynek">
+                    <div id="houseInputs">
+                        <input type="text" id="powierzchnia" placeholder="Powierzchnia">
+                        <input type="text" id="rodzajZabudowy" placeholder="Rodzaj zabudowy">
+                        <input type="text" id="rynek" placeholder="Rynek">
+                    </div>
+
+                    <div id="flatInputs">
+                        <input type="text" id="powierzchnia" placeholder="Powierzchnia">
+                        <input type="text" id="pokoje" placeholder="Liczba pokoi">
+                        <input type="text" id="rokBudowy" placeholder="Rok budowy">
+                    </div>
+
+                    <div id="landInputs">
+                        <input type="text" id="powierzchnia" placeholder="Powierzchnia">
+                        <input type="text" id="typDzialki" placeholder="Typ działki">
+                        <input type="text" id="ogrodzenie" placeholder="Ogrodzenie">
+                    </div>
+
+                </fieldset>
+
+                <input type="submit" placeholder="Dodaj" id="add">
+            </form>
         </div>
-
-        <div id="flatInputs">
-        <input type="text" id="powierzchnia" placeholder="Powierzchnia">
-        <input type="text" id="pokoje" placeholder="Liczba pokoi">
-        <input type="text" id="rokBudowy" placeholder="Rok budowy">
-        </div>
-
-        <div id="landInputs">
-        <input type="text" id="powierzchnia" placeholder="Powierzchnia">
-        <input type="text" id="typDzialki" placeholder="Typ działki">
-        <input type="text" id="ogrodzenie" placeholder="Ogrodzenie">
-        </div>
-
-        </fieldset>
-
-
-
-        <input type="submit" placeholder="Dodaj" id="add">
-    </form>
-
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="js/out.js"></script>
 </body>
+
 </html>

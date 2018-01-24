@@ -1,0 +1,22 @@
+@mixin buttons {
+    background-color: $maincolor;
+    border: 1px solid $maincolor;
+    padding: 10px;
+    font-size: 11px;
+    line-height: 2em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    min-width: 100px;
+}
+
+@mixin header {
+    margin: 15px 0;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+}
+
+@mixin placeholder {
+    color: #fff;
+    font-size: 12px;
+}
